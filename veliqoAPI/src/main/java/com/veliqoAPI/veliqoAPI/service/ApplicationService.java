@@ -41,7 +41,7 @@ public class ApplicationService {
 
     }
 
-    //get the logged in applicant's application
+     //get the logged in applicant's application
     public List<Application> applicant(String email) throws Exception {
         try {
             if(userRepository.existsByEmail(email)){
@@ -91,6 +91,34 @@ public class ApplicationService {
               throw new Exception("Approval Failed: " + ex.getMessage());
           }
       }
+
+      //reject application
+    public String reject(Long id) throws Exception {
+        try{
+            if(applicationRepository.existsById(id)){
+                Application existingAppl = applicationRepository.findById(id).get();
+                existingAppl.setApplicationStatus("Rejected");
+                applicationRepository.save(existingAppl);
+                return "Application rejected";
+
+            }else {
+                return "Id not found";
+            }
+
+        }catch (Exception ex){
+            throw new Exception("Rejecting Failed: " + ex.getMessage());
+        }
+
+    }
+
+    // get application by status
+    public List<Application> listbyStatus(String status) throws Exception {
+        try{
+        return applicationRepository.findByApplicationStatus(status);
+        }catch (Exception ex){
+            throw new Exception("Failed: "+ex.getMessage());
+        }
+    }
 
 
 }

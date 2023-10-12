@@ -11,8 +11,9 @@ public enum Permission {
     ADMIN_CREATE("admin:create"),
     ADMIN_DELETE("admin:delete"),
     APPLICANT_READ("applicant:read"),
-    APPLICANT_CREATE("applicant:create")
-
+    APPLICANT_UPDATE("applicant:update"),
+    APPLICANT_CREATE("applicant:create"),
+    APPLICANT_DELETE("applicant:delete")
     ;
 
     //@Getter

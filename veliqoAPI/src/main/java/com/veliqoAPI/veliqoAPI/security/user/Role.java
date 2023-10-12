@@ -24,12 +24,16 @@ public enum Role {
                   ADMIN_DELETE,
                   ADMIN_CREATE,
                   APPLICANT_READ,
+                  APPLICANT_UPDATE,
+                  APPLICANT_DELETE,
                   APPLICANT_CREATE
           )
   ),
   APPLICANT(
           Set.of(
                   APPLICANT_READ,
+                  APPLICANT_UPDATE,
+                  APPLICANT_DELETE,
                   APPLICANT_CREATE
           )
   );

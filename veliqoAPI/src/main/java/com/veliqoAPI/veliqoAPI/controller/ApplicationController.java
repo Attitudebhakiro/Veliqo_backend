@@ -17,29 +17,48 @@ public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;
 
-    @PostMapping("/api/applicant/apply")
+    @PostMapping("/applicant/apply")
     public Application appli(@Validated @RequestBody Application application) throws Exception {
          return applicationService.apply(application);
     }
 
     // all applications
-    @GetMapping("/api/admin/listApplications")
+    @GetMapping("/admin/listApplications")
     public List<Application> lst() throws Exception {
         return applicationService.list();
     }
 
+    @GetMapping("/admin/list")
+    public List<Application> lsting() throws Exception {
+        String status = "Pending";
+        return applicationService.listbyStatus(status);
+    }
+
     // logged in applicant
-    @GetMapping("/api/applicant/application/{email}")
+    @GetMapping("/applicant/application/{email}")
     public List<Application> profile(@PathVariable String email) throws Exception {
         return applicationService.applicant(email);
     }
-    // approve
-    @PutMapping("/api/admin/approve/{id}")
+    // approve application
+    @PutMapping("/admin/approve/{id}")
     public String approving(@PathVariable Long id) throws Exception {
        return applicationService.approve(id);
     }
-    @DeleteMapping("/api/admin/delete/{id}")
+    //delete application
+    @DeleteMapping("/admin/delete/{id}")
     public  String delete(@PathVariable Long id) throws Exception {
         return applicationService.deleteAppl(id);
+    }
+
+    //reject application
+    @PutMapping("/admin/reject/{id}")
+    public String rejecting(@PathVariable Long id) throws Exception {
+        return applicationService.reject(id);
+    }
+
+    // get application by status
+    @GetMapping("/admin/status/{status}")
+    public List<Application> list(@PathVariable String status) throws Exception {
+        return applicationService.listbyStatus(status);
     }
 }

@@ -39,7 +39,7 @@ public class SecurityConfiguration {
         .disable()
         .authorizeHttpRequests()
         .requestMatchers(
-                "/api/auth/**","/api/user/**","/api/applicant/**","/api/admin/**",
+                "/register","/authenticate","/applicant/**","/admin/**","/profile/**",
                 "/v2/api-docs",
                 "/v3/api-docs",
                 "/v3/api-docs/**",
@@ -53,18 +53,18 @@ public class SecurityConfiguration {
         )
           .permitAll()
 
-        .requestMatchers("/api/applicant/**").hasAnyRole(APPLICANT.name())
-        .requestMatchers(GET, "/api/applicant/**").hasAnyAuthority(APPLICANT_READ.name())
-        .requestMatchers(POST, "/api/applicant/**").hasAnyAuthority(APPLICANT_CREATE.name())
+        .requestMatchers("/applicant/**").hasAnyRole(APPLICANT.name())
+        .requestMatchers(GET, "/applicant/**").hasAnyAuthority(APPLICANT_READ.name())
+        .requestMatchers(POST, "/applicant/**").hasAnyAuthority(APPLICANT_CREATE.name())
 
-        .requestMatchers("/api/admin/**").hasRole(ADMIN.name())
-        .requestMatchers(GET, "/api/admin/**").hasAuthority(ADMIN_READ.name())
-        .requestMatchers(POST, "/api/admin/**").hasAuthority(ADMIN_CREATE.name())
-        .requestMatchers(PUT, "/api/admin/**").hasAuthority(ADMIN_UPDATE.name())
-        .requestMatchers(DELETE, "/api/admin/**").hasAuthority(ADMIN_DELETE.name())
+        .requestMatchers("/admin/**").hasRole(ADMIN.name())
+        .requestMatchers(GET, "/admin/**").hasAuthority(ADMIN_READ.name())
+        .requestMatchers(POST, "/admin/**").hasAuthority(ADMIN_CREATE.name())
+        .requestMatchers(PUT, "/admin/**").hasAuthority(ADMIN_UPDATE.name())
+        .requestMatchers(DELETE, "/admin/**").hasAuthority(ADMIN_DELETE.name())
 
-        .requestMatchers("/api/user/**").hasAnyRole(ADMIN.name(), APPLICANT.name())
-        .requestMatchers(GET, "/api/user**").hasAnyAuthority(ADMIN_READ.name(), APPLICANT_READ.name())
+        .requestMatchers("/profile/**").hasAnyRole(ADMIN.name(), APPLICANT.name())
+        .requestMatchers(GET, "/profile/**").hasAnyAuthority(ADMIN_READ.name(), APPLICANT_READ.name())
 
         .anyRequest()
           .authenticated()

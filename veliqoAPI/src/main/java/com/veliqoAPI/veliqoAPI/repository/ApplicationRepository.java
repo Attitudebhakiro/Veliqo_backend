@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
          List<Application> findByApplicant(User user);
+
+    List<Application> findByApplicationStatus(String status);
 }

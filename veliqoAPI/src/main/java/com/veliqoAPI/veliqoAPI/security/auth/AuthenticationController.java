@@ -12,7 +12,6 @@ import java.io.IOException;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
   @Autowired
