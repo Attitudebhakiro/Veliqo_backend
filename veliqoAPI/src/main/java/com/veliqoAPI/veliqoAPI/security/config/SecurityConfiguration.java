@@ -34,12 +34,13 @@ public class SecurityConfiguration {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
+    http.cors().and()
         .csrf()
         .disable()
         .authorizeHttpRequests()
         .requestMatchers(
-                "/register","/authenticate","/applicant/**","/admin/**","/profile/**",
+         //    "/register","/authenticate","/applicant/**","/admin/**","/profile/**",
+             "/auth/**",
                 "/v2/api-docs",
                 "/v3/api-docs",
                 "/v3/api-docs/**",
@@ -50,8 +51,7 @@ public class SecurityConfiguration {
                 "/swagger-ui/**",
                 "/webjars/**",
                 "/swagger-ui.html"
-        )
-          .permitAll()
+        ).permitAll()
 
         .requestMatchers("/applicant/**").hasAnyRole(APPLICANT.name())
         .requestMatchers(GET, "/applicant/**").hasAnyAuthority(APPLICANT_READ.name())

@@ -46,6 +46,7 @@ User user = new User(request.getName(), request.getDob(), request.getIdNumber(),
 
 
   public AuthenticationResponse authenticate(AuthenticationRequest request) {
+    System.out.println("hi1");
     authenticationManager.authenticate(
         new UsernamePasswordAuthenticationToken(
             request.getEmail(),
@@ -66,7 +67,7 @@ User user = new User(request.getName(), request.getDob(), request.getIdNumber(),
 //        .build();
 
      // return ResponseEntity.ok(new JwtResponse(jwtToken, request.getEmail()));
-
+    System.out.println("hi2");
     return new AuthenticationResponse(jwtToken,request.getEmail());
   }
 

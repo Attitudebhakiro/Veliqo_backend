@@ -16,8 +16,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/profile/{email}")
-   // @CrossOrigin(origins= "http://localhost:4200", allowedHeaders = "Content-Type': 'application/json")
-    public Optional<User> user(@PathVariable String email){
+        public Optional<User> user(@PathVariable String email){
         return userService.userProfile(email);
     }
 }
